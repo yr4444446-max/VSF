@@ -239,9 +239,12 @@ nav a {
 }
 
 .hero-content h2 {
-    font-size: 30px;
-    text-align: left;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: #ffffff;
     color: #ffffff;
+    text-align: left;
 }
 
 
@@ -1086,4 +1089,5 @@ button {
 .reveal.fade-out {
     opacity: 0;
     transform: translateY(-40px);
+
 }
