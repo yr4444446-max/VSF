@@ -42,63 +42,52 @@ header.scrolled {
     backdrop-filter: blur(18px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
 }
-/* Base styles */
+
 .navbar {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: #111;
+    padding: 16px;
 }
 
-.logo {
-    color: #fff;
-    font-size: 20px;
+nav a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    position: relative;
 }
 
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #2c2c2c;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #2c2c2c;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Make <ul> flex for links */
 .nav-links {
     display: flex;
-    list-style: none;
+    align-items: center;
     gap: 20px;
-}
-
-.nav-links li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* Hamburger hidden on desktop */
-.menu-toggle {
-    display: none;
-    font-size: 26px;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* 📱 Mobile View */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #111;
-        flex-direction: column;
-        text-align: center;
-        display: none;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        padding: 15px 0;
-    }
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li {
@@ -194,7 +183,7 @@ nav a {
 }
 
 .hero {
-    position: relative;
+    position: relative;      
     height: 100vh;
     overflow: hidden;
     display: flex;
@@ -1097,10 +1086,4 @@ button {
 .reveal.fade-out {
     opacity: 0;
     transform: translateY(-40px);
-
 }
-
-
-
-
-
