@@ -97,11 +97,7 @@ nav a:hover::after {
     cursor: pointer;
 }
 
-/* Mobile Nav */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+
 .nav-links li {
     position: relative;
     /* Needed for dropdown */
@@ -1100,3 +1096,33 @@ button {
     transform: translateY(-40px);
 
 }
+
+/* ================= MOBILE VIEW ================= */
+        @media (max-width: 768px) {
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: linear-gradient(135deg, var(--pink), var(--purple));
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
