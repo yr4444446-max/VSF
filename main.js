@@ -233,23 +233,15 @@ window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
 
-const arrow = document.getElementById("arrow");
 
-let angle = 0;
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
 
-function rotate() {
-    angle += 1;               // speed (increase = faster)
-    arrow.style.transform = `rotate(${angle}deg)`;
-    requestAnimationFrame(rotate);
-}
+    menuToggle.onclick = () => {
+        navLinks.classList.toggle("active");
+    };
 
-rotate();
 
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
 
-        menuToggle.onclick = () => {
-            navLinks.classList.toggle("active");
-        };
 
 
