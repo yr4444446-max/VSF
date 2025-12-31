@@ -89,7 +89,19 @@ nav a:hover::after {
     margin: 0;
     padding: 0;
 }
+/* Hamburger */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+}
 
+/* Mobile Nav */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
 .nav-links li {
     position: relative;
     /* Needed for dropdown */
@@ -1086,4 +1098,5 @@ button {
 .reveal.fade-out {
     opacity: 0;
     transform: translateY(-40px);
+
 }
