@@ -502,7 +502,7 @@
 
         function submitStartup() {
             alert("Startup registered successfully 🚀");
-            index.html();
+            goHome();
         }
         function submitVisitor() {
             alert("Visitor registered successfully 🚀");
@@ -625,9 +625,13 @@
             alert("Form submitted successfully ✅");
             goHome();
         }
+        document.getElementById("myForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop form default behavior
+    window.location.href = "index.html";
     </script>
 </body>
 
 
 </html>
+
 
