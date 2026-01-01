@@ -227,11 +227,11 @@ nav a {
 }
 
 /* 📱 MOBILE FIX */
-@media (max-width: 768px) {
+@media (max-width: 768px) (max-height :600px){
     .bg-box {
         position: relative;
         width: 90%;
-        height: 200px;
+        height: 70px;
         left: 0;
         margin: 0 auto 20px;
         border-radius: 22px;
@@ -1122,6 +1122,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
