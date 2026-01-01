@@ -215,9 +215,9 @@ nav a {
 /* 🔮 Glass box */
 .bg-box {
     position: absolute;
-    width: 400px;
-    height: 300px;
-    left: 50px;
+    width: 300px;
+    height: 400px;
+    left: 35px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(14px);
@@ -235,7 +235,7 @@ nav a {
 }
 
 .hero-content h1 {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .hero-content h2 {
@@ -245,7 +245,7 @@ nav a {
     -webkit-text-fill-color: #ffffff;
     color: #ffffff;
     text-align: left;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 
@@ -1092,4 +1092,5 @@ button {
     transform: translateY(-40px);
 
 }
+
 
