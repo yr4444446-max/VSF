@@ -73,7 +73,7 @@ nav a::after {
 }
 
 nav a:hover {
-    color: #2c2c2c;
+    color: #00c3ff;
 }
 
 nav a:hover::after {
@@ -242,11 +242,11 @@ nav a {
     }
 
     .hero-content h1 {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .hero-content h2 {
-        font-size: 16px;
+        font-size: 12px;
         text-align: center;
     }
 
@@ -1122,6 +1122,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
