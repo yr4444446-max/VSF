@@ -1,5 +1,83 @@
 document.addEventListener("DOMContentLoaded", () => {
+/* ===============================
+       MOBILE MENU TOGGLE - ADD THIS FIRST
+    =============================== */
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const navItems = document.querySelectorAll(".nav-links a");
 
+    if (menuToggle && navLinks) {
+        // Toggle menu on hamburger click
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("active");
+            navLinks.classList.toggle("active");
+            document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
+        });
+
+        // Close menu when clicking on a link
+        navItems.forEach(item => {
+            item.addEventListener("click", () => {
+                menuToggle.classList.remove("active");
+                navLinks.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuToggle.classList.remove("active");
+                navLinks.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        });
+    }
+    /* ===============================
+       ROLE SELECTION
+    =============================== */
+    const roles = document.querySelectorAll(".role");
+    const roleInput = document.getElementById("roleInput");
+
+    if (roles.length && roleInput) {
+        roles.forEach(role => {
+            role.addEventListener("click", () => {
+                roles.forEach(r => r.classList.remove("active"));
+                role.classList.add("active");
+                roleInput.value = role.innerText.trim();
+            });
+        });
+    }
+
+
+    /* ===============================
+       HEADER SCROLL EFFECT
+    =============================== */
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+        if (!header) return;
+        header.classList.toggle("scrolled", window.scrollY > 80);
+    });
+
+
+    /* ===============================
+       DROPDOWN MENU
+    =============================== */
+    const dropdown = document.querySelector(".dropdown");
+    const toggle = document.getElementById("dropdownToggle");
+
+    if (dropdown && toggle) {
+        toggle.addEventListener("click", e => {
+            e.preventDefault();
+            dropdown.classList.toggle("active");
+        });
+
+        document.addEventListener("click", e => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+    }
     /* ===============================
        ROLE SELECTION
     =============================== */
@@ -231,6 +309,7 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
+
 
 
 
