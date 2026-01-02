@@ -426,9 +426,9 @@
 
                 <input type="email" name="email" placeholder="Email ID *" required>
 
-                <input type="text" name="company" placeholder="Company Name *" required>
-                <input type="text" name="role" placeholder="Your Role *" required>
-                <input type="text" name="expertise" placeholder="Industry Expertise *" required>
+                 <input type="text" name="company" placeholder="Company Name (optional)">
+                <input type="text" name="role" placeholder="Your Role (optional)">
+                <input type="text" name="expertise" placeholder="Industry Expertise (optional)">
 
                 <input type="text" name="rpin" placeholder="Residential PIN Code *" required>
                 <input type="text" name="opin" placeholder="Office PIN Code *" required>
@@ -535,6 +535,7 @@
                 .catch(err => {
                     alert("Mentor registered successfully 🚀");
                     console.error(err);
+                    goHome()
                 });
         });
 
@@ -556,6 +557,7 @@
                 .catch(err => {
                     alert("Investor registered successfully 🚀");
                     console.error(err);
+                    goHome()
                 });
         });
 
@@ -577,6 +579,7 @@
                 .catch(err => {
                     alert("Visitor registered successfully 🚀");
                     console.error(err);
+                    goHome()
                 });
         });
 
@@ -598,6 +601,7 @@
                 .catch(err => {
                     alert("Startup registered successfully 🚀");
                     console.error(err);
+                    goHome()
                 });
         });
 
@@ -630,3 +634,4 @@
 
 
 </html>
+
