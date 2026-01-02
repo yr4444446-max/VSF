@@ -355,7 +355,8 @@ nav a {
     }
     
     .hero-content h1 {
-        font-size: 18px;
+        font-size: 16px;
+        text-align: left;
     }
     
     .hero-content h2 {
@@ -369,7 +370,7 @@ nav a {
 }
     
     .hero-content p {
-        font-size: 19px;
+        font-size: 14px;
     }
     
     .bg-box {
@@ -1410,6 +1411,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
