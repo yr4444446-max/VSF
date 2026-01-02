@@ -483,18 +483,12 @@ nav a {
 =============================================== */
 @media (max-width: 768px) {
     .bg-video {
-        /* Option 1: Cover mode - fills screen, may crop edges */
         object-fit: cover;
-        
-        /* Option 2: Contain mode - shows full video, may have black bars */
-        /* object-fit: contain; */
-        
-        /* Option 3: Fill mode - stretches to fit */
-        /* object-fit: fill; */
-        
         width: 100%;
         height: 100%;
-        object-position: center center; /* Center the video */
+         object-position: center center;
+        transform: scale(0.7);
+        object-origin: center center; /* Center the video */
     }
     
     /* If video appears zoomed, try adjusting scale */
@@ -1464,6 +1458,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
