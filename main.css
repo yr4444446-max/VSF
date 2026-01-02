@@ -481,14 +481,18 @@ nav a {
 /* ===============================================
    MOBILE VIDEO ADJUSTMENTS
 =============================================== */
+.bg-video-wrapper {
+    height: 100vh;
+}
+
 @media (max-width: 768px) {
     .bg-video {
+        object-fit: contain;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center;
     }
 }
+
 
     
     /* If video appears zoomed, try adjusting scale */
@@ -1458,6 +1462,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
