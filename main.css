@@ -355,7 +355,7 @@ nav a {
     }
     
     .hero-content h1 {
-        font-size: 16px;
+        font-size: 12px;
         text-align: left;
     }
     
@@ -366,17 +366,18 @@ nav a {
     -webkit-text-fill-color: #ffffff;
     color: #ffffff;
     text-align: left;
-    font-size: 16px;
+    font-size: 12px;
 }
     
     .hero-content p {
-        font-size: 14px;
+        font-size: 10px;
+        
     }
     
     .bg-box {
         width: 90%;
         height: 200px;
-        left: 7%;
+        left: 5%;
     }
     
     /* Sections */
@@ -1411,6 +1412,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
