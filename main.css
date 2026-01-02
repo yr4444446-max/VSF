@@ -506,7 +506,7 @@ nav a {
 }
 
 .hero-content h1 {
-    font-size: 21px;
+    font-size: 24px;
     margin-bottom: 12px;
 }
 
@@ -522,8 +522,9 @@ nav a {
 }
 
 .hero-content p {
-    font-size: 10px;
+    font-size: 14px;
     opacity: 1.5;
+    text-align: left;
 }
 
 .btn {
@@ -1412,6 +1413,7 @@ button {
     transform: translateY(-40px);
 
 }
+
 
 
 
