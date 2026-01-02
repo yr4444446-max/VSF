@@ -1254,7 +1254,7 @@ button {
     .bg-box {
         width: 85%;
         max-width: 340px;
-        min-height: 230px;
+        min-height: 180px;
         padding: 20px;
     }
     
@@ -1279,4 +1279,5 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
