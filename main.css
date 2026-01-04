@@ -996,7 +996,7 @@ button {
         right: -100%;
         width: 200px;
         max-height: calc(100vh - 100px);
-        background: rgba(161, 22, 215, 0.2);
+         background: rgba(109, 109, 109, 0.2);
         backdrop-filter: blur(70px);
         -webkit-backdrop-filter: blur(70px);
         border-radius: 18px;
@@ -1308,6 +1308,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
