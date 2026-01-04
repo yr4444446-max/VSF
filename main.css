@@ -1013,6 +1013,7 @@ button {
         z-index: 1000;
         overflow-y: auto;
         margin-right: 12px;
+         padding: 18px 14px; 
     }
     
     .nav-links.active {
@@ -1307,6 +1308,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
