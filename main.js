@@ -1,28 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* ===============================
-       MOBILE MENU TOGGLE - ADD THIS FIRST
+       MOBILE MENU TOGGLE - FIXED VERSION
     =============================== */
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
-    const navItems = document.querySelectorAll(".nav-links a");
+    const navItems = document.querySelectorAll(".nav-links a:not(.dropdown > a)");
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownToggle = document.getElementById("dropdownToggle");
 
     if (menuToggle && navLinks) {
         // Toggle menu on hamburger click
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
             menuToggle.classList.toggle("active");
             navLinks.classList.toggle("active");
             document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
         });
 
-        // Close menu when clicking on a link
+        // Handle dropdown toggle (Previous Version)
+        if (dropdownToggle && dropdown) {
+            dropdownToggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdown.classList.toggle("active");
+            });
+        }
+
+        // Close menu when clicking on non-dropdown links
         navItems.forEach(item => {
             item.addEventListener("click", () => {
                 menuToggle.classList.remove("active");
                 navLinks.classList.remove("active");
                 document.body.style.overflow = "";
+                if (dropdown) dropdown.classList.remove("active");
             });
         });
+
+        // Close dropdown items should also close the menu
+        if (dropdown) {
+            const dropdownLinks = dropdown.querySelectorAll(".dropdown-content a");
+            dropdownLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    menuToggle.classList.remove("active");
+                    navLinks.classList.remove("active");
+                    document.body.style.overflow = "";
+                    dropdown.classList.remove("active");
+                });
+            });
+        }
 
         // Close menu when clicking outside
         document.addEventListener("click", (e) => {
@@ -30,9 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 menuToggle.classList.remove("active");
                 navLinks.classList.remove("active");
                 document.body.style.overflow = "";
+                if (dropdown) dropdown.classList.remove("active");
             }
         });
+
+        // Prevent clicks inside nav from closing menu
+        navLinks.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
     }
+
     /* ===============================
        ROLE SELECTION
     =============================== */
@@ -49,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     /* ===============================
        HEADER SCROLL EFFECT
     =============================== */
@@ -59,27 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!header) return;
         header.classList.toggle("scrolled", window.scrollY > 80);
     });
-
-
-    /* ===============================
-       DROPDOWN MENU
-    =============================== */
-    const dropdown = document.querySelector(".dropdown");
-    const toggle = document.getElementById("dropdownToggle");
-
-    if (dropdown && toggle) {
-        toggle.addEventListener("click", e => {
-            e.preventDefault();
-            dropdown.classList.toggle("active");
-        });
-
-        document.addEventListener("click", e => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove("active");
-            }
-        });
-    }
-
 
     /* ===============================
        COUNTER ANIMATION
@@ -113,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
-
     /* ===============================
        SLIDER AUTO ROTATION
     =============================== */
@@ -125,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const radio = document.getElementById("s" + currentSlide);
         if (radio) radio.checked = true;
     }, 4000);
-
 
     /* ===============================
        OPPORTUNITIES ROTATION
@@ -169,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showOpportunities();
     setInterval(showOpportunities, 10000);
 
-
     /* ===============================
        SUCCESS STORIES FADE-IN
     =============================== */
@@ -188,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
         successCards.forEach(card => successObserver.observe(card));
     }
 
-
     /* ===============================
        BACK TO TOP BUTTON
     =============================== */
@@ -203,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-
 
     /* ===============================
        COPY EMAIL + TOAST
@@ -232,6 +238,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+/* ===============================
+   REVEAL ON SCROLL
+=============================== */
 const cards = document.querySelectorAll('.card');
 
 const observer = new IntersectionObserver(entries => {
@@ -243,6 +253,7 @@ const observer = new IntersectionObserver(entries => {
 });
 
 cards.forEach(card => observer.observe(card));
+
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -264,19 +275,3 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
-
-      function toggleMenu() {
-            const menu = document.getElementById("nav-links");
-            const btn = document.getElementById("menuBtn");
-
-            menu.classList.toggle("show");
-
-            if (menu.classList.contains("show")) {
-                btn.innerHTML = "❌";
-            } else {
-                btn.innerHTML = "☰";
-            }
-        }
-
-
-
