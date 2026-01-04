@@ -997,8 +997,8 @@ button {
         width: 200px;
         max-height: calc(100vh - 100px);
          background: rgba(109, 109, 109, 0.2);
-        backdrop-filter: blur(70px);
-        -webkit-backdrop-filter: blur(70px);
+        backdrop-filter: blur(80px);
+        -webkit-backdrop-filter: blur(80px);
         border-radius: 18px;
         border: 1px solid rgba(0, 0, 0, 0.25);
         flex-direction: column;
@@ -1034,7 +1034,6 @@ button {
         border-radius: 8px;
         transition: all 0.25s ease;
         font-weight: 500;
-             color: #000000;
     }
     
     .nav-links a:hover {
@@ -1309,6 +1308,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
