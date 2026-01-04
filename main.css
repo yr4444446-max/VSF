@@ -1052,8 +1052,8 @@ button {
         width: 100%;
         margin-top: 5px;
         background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(60px);
-        -webkit-backdrop-filter: blur(60px);
+        backdrop-filter: blur(80px);
+        -webkit-backdrop-filter: blur(80px);
         border-radius: 8px;
         display: none;
         overflow: hidden;
@@ -1065,7 +1065,7 @@ button {
     }
     
     .dropdown-content a {
-          color: #000000;
+          color:  #ffffff;
         padding: 7px 10px;
         font-size: 13px;
         font-weight: 400;
@@ -1309,6 +1309,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
