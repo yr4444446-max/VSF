@@ -997,10 +997,10 @@ button {
         width: 180px;
         max-height: calc(100vh - 100px);
         background: rgba(161, 22, 215, 0.2);
-        backdrop-filter: blur(50px);
-        -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(70px);
+        -webkit-backdrop-filter: blur(70px);
         border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(0, 0, 0, 0.25);
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
@@ -1307,4 +1307,5 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
