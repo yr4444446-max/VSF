@@ -994,7 +994,7 @@ button {
         position: fixed;
         top: 75px;
         right: -100%;
-        width: 180px;
+        width: 200px;
         max-height: calc(100vh - 100px);
         background: rgba(161, 22, 215, 0.2);
         backdrop-filter: blur(70px);
@@ -1307,5 +1307,6 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
