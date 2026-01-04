@@ -1050,8 +1050,8 @@ button {
         width: 100%;
         margin-top: 5px;
         background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
         border-radius: 8px;
         display: none;
         overflow: hidden;
@@ -1307,3 +1307,4 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
