@@ -26,6 +26,90 @@
             margin: 0 auto;
         }
 
+        /* Login Screen Styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .login-box {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #6a00ff;
+            font-size: 2em;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #6a00ff;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff4ecd, #6a00ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(106, 0, 255, 0.3);
+        }
+
+        .error-message {
+            background: #ff4444;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
         h1 {
             text-align: center;
             margin-bottom: 40px;
@@ -172,6 +256,22 @@
             background: #45a049;
         }
 
+        .btn-logout {
+            padding: 12px 24px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-left: auto;
+        }
+
+        .btn-logout:hover {
+            background: #cc0000;
+        }
+
         .table-container {
             overflow-x: auto;
         }
@@ -295,6 +395,10 @@
                 padding: 20px;
             }
 
+            .login-box {
+                padding: 30px;
+            }
+
             table {
                 font-size: 12px;
             }
@@ -309,135 +413,159 @@
 
 <body>
     <div class="container">
-        <h1>📊 VSF Admin Dashboard</h1>
-
-        <div id="loadingMessage" class="loading">Loading data from Firebase...</div>
-        <div id="errorMessage" class="error" style="display: none;"></div>
-
-        <div id="dashboardContent" style="display: none;">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>🚀 Total Startups</h3>
-                    <div class="number" id="totalStartups">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>👤 Total Visitors</h3>
-                    <div class="number" id="totalVisitors">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>💼 Total Investors</h3>
-                    <div class="number" id="totalInvestors">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>🧠 Total Mentors</h3>
-                    <div class="number" id="totalMentors">0</div>
-                </div>
+        <!-- Login Screen -->
+        <div id="loginScreen" class="login-container">
+            <div class="login-box">
+                <h1>🔐 Admin Login</h1>
+                <p>VSF Admin Dashboard</p>
+                <div id="loginError" class="error-message"></div>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required autocomplete="username">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
             </div>
+        </div>
 
-            <div class="section">
-                <div class="tabs">
-                    <button class="tab-btn active" onclick="switchTab('startups')">🚀 Startups</button>
-                    <button class="tab-btn" onclick="switchTab('visitors')">👤 Visitors</button>
-                    <button class="tab-btn" onclick="switchTab('investors')">💼 Investors</button>
-                    <button class="tab-btn" onclick="switchTab('mentors')">🧠 Mentors</button>
-                </div>
+        <!-- Dashboard Content -->
+        <div id="dashboardArea" style="display: none;">
+            <h1>📊 VSF Admin Dashboard</h1>
 
-                <div class="controls">
-                    <input type="text" class="search-bar" id="searchBar" placeholder="Search...">
-                    <select class="search-bar" id="durationFilter" style="flex: 0 1 200px;">
-                        <option value="all">All Time</option>
-                        <option value="today">Today</option>
-                        <option value="week">Last 7 Days</option>
-                        <option value="month">Last 30 Days</option>
-                        <option value="3months">Last 3 Months</option>
-                        <option value="year">Last Year</option>
-                    </select>
-                    <button class="btn-refresh" onclick="loadAllData()">🔄 Refresh</button>
-                    <button class="btn-export" onclick="exportToCSV()">📥 Export CSV</button>
-                </div>
+            <div id="loadingMessage" class="loading">Loading data from Firebase...</div>
+            <div id="errorMessage" class="error" style="display: none;"></div>
 
-                <!-- Startups Tab -->
-                <div id="startups-content" class="tab-content active">
-                    <h2>🚀 Startups</h2>
-                    <div class="table-container">
-                        <table id="startupsTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Startup Name</th>
-                                    <th>Stage</th>
-                                    <th>Industry</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+            <div id="dashboardContent" style="display: none;">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>🚀 Total Startups</h3>
+                        <div class="number" id="totalStartups">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>👤 Total Visitors</h3>
+                        <div class="number" id="totalVisitors">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>💼 Total Investors</h3>
+                        <div class="number" id="totalInvestors">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>🧠 Total Mentors</h3>
+                        <div class="number" id="totalMentors">0</div>
                     </div>
                 </div>
 
-                <!-- Visitors Tab -->
-                <div id="visitors-content" class="tab-content">
-                    <h2>👤 Visitors</h2>
-                    <div class="table-container">
-                        <table id="visitorsTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>PIN Code</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                <div class="section">
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchTab('startups')">🚀 Startups</button>
+                        <button class="tab-btn" onclick="switchTab('visitors')">👤 Visitors</button>
+                        <button class="tab-btn" onclick="switchTab('investors')">💼 Investors</button>
+                        <button class="tab-btn" onclick="switchTab('mentors')">🧠 Mentors</button>
                     </div>
-                </div>
 
-                <!-- Investors Tab -->
-                <div id="investors-content" class="tab-content">
-                    <h2>💼 Investors</h2>
-                    <div class="table-container">
-                        <table id="investorsTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Type</th>
-                                    <th>Residential PIN</th>
-                                    <th>Office PIN</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                    <div class="controls">
+                        <input type="text" class="search-bar" id="searchBar" placeholder="Search...">
+                        <select class="search-bar" id="durationFilter" style="flex: 0 1 200px;">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">Last 7 Days</option>
+                            <option value="month">Last 30 Days</option>
+                            <option value="3months">Last 3 Months</option>
+                            <option value="year">Last Year</option>
+                        </select>
+                        <button class="btn-refresh" onclick="loadAllData()">🔄 Refresh</button>
+                        <button class="btn-export" onclick="exportToCSV()">📥 Export CSV</button>
+                        <button class="btn-logout" onclick="logout()">🚪 Logout</button>
                     </div>
-                </div>
 
-                <!-- Mentors Tab -->
-                <div id="mentors-content" class="tab-content">
-                    <h2>🧠 Mentors</h2>
-                    <div class="table-container">
-                        <table id="mentorsTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Company</th>
-                                    <th>Role</th>
-                                    <th>Expertise</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                    <!-- Startups Tab -->
+                    <div id="startups-content" class="tab-content active">
+                        <h2>🚀 Startups</h2>
+                        <div class="table-container">
+                            <table id="startupsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Startup Name</th>
+                                        <th>Stage</th>
+                                        <th>Industry</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Visitors Tab -->
+                    <div id="visitors-content" class="tab-content">
+                        <h2>👤 Visitors</h2>
+                        <div class="table-container">
+                            <table id="visitorsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>PIN Code</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Investors Tab -->
+                    <div id="investors-content" class="tab-content">
+                        <h2>💼 Investors</h2>
+                        <div class="table-container">
+                            <table id="investorsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Type</th>
+                                        <th>Residential PIN</th>
+                                        <th>Office PIN</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Mentors Tab -->
+                    <div id="mentors-content" class="tab-content">
+                        <h2>🧠 Mentors</h2>
+                        <div class="table-container">
+                            <table id="mentorsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Company</th>
+                                        <th>Role</th>
+                                        <th>Expertise</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -465,6 +593,12 @@
         const database = firebase.database();
         const firestore = firebase.firestore();
 
+        // ADMIN CREDENTIALS - Store these in Firebase Firestore for better security
+        const ADMIN_CREDENTIALS = {
+            username: 'vsfadmin',
+            password: '123456'
+        };
+
         let allData = {
             startups: [],
             visitors: [],
@@ -474,13 +608,54 @@
 
         let currentTab = 'startups';
 
+        // Check if user is already logged in
+        window.addEventListener('load', function () {
+            const isLoggedIn = sessionStorage.getItem('vsfAdminLoggedIn');
+            if (isLoggedIn === 'true') {
+                showDashboard();
+            }
+        });
+
+        // Handle login
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                sessionStorage.setItem('vsfAdminLoggedIn', 'true');
+                errorDiv.style.display = 'none';
+                showDashboard();
+            } else {
+                errorDiv.textContent = '❌ Invalid username or password';
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboardArea').style.display = 'block';
+            loadAllData();
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.removeItem('vsfAdminLoggedIn');
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('dashboardArea').style.display = 'none';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+        }
+
         // Load data from both Realtime DB and Firestore
         async function loadAllData() {
             try {
                 document.getElementById('loadingMessage').style.display = 'block';
                 document.getElementById('errorMessage').style.display = 'none';
 
-                // Load from Firestore (primary source)
                 const collections = ['startups', 'visitors', 'investors', 'mentors'];
 
                 for (const collection of collections) {
@@ -523,11 +698,9 @@
         function switchTab(tab) {
             currentTab = tab;
 
-            // Update tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Update tab content
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(tab + '-content').classList.add('active');
 
@@ -561,10 +734,8 @@
             const searchTerm = document.getElementById('searchBar').value.toLowerCase();
             let filteredData = allData[currentTab];
 
-            // Apply duration filter
             filteredData = filterByDuration(filteredData);
 
-            // Apply search filter
             if (searchTerm) {
                 filteredData = filteredData.filter(item =>
                     JSON.stringify(item).toLowerCase().includes(searchTerm)
@@ -719,7 +890,6 @@
         function exportToCSV() {
             let data = allData[currentTab];
 
-            // Apply duration filter to export
             data = filterByDuration(data);
 
             if (data.length === 0) {
@@ -749,12 +919,8 @@
             a.click();
         }
 
-        // Search and filter functionality
         document.getElementById('searchBar').addEventListener('input', renderCurrentTab);
         document.getElementById('durationFilter').addEventListener('change', renderCurrentTab);
-
-        // Initialize on page load
-        window.addEventListener('load', loadAllData);
     </script>
 </body>
 
