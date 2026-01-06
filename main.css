@@ -352,23 +352,35 @@ h2 {
 /* PARTNERS */
 /* PARTNERS */
 .partner-grid {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    justify-content: center;
-}
-
-.partner-grid::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
 }
 
 .partner-card {
-    min-width: 200px;
-    height: 80px;
-    flex-shrink: 0; /* ⬅ VERY IMPORTANT */
+    background: rgba(255, 255, 255, .6);
+    backdrop-filter: blur(16px);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s;
 }
 
+.partner-card img {
+    max-width: 120px;
+    max-height: 60px;
+    filter: grayscale(100%);
+    opacity: .8;
+    transition: .4s;
+}
+
+.partner-card:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
 
 .partner-card img {
     max-width: 90px;
@@ -1311,6 +1323,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
