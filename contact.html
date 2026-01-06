@@ -13,8 +13,15 @@
             font-family: "Segoe UI", sans-serif;
         }
 
+        :root {
+            --pink: #ff4ecd;
+            --purple: #6a00ff;
+            --grad: linear-gradient(135deg, #ff4ecd, #6a00ff);
+        }
+
         body {
-            background: linear-gradient(135deg, #fde2f1, #f5e9ff);
+            background: linear-gradient(135deg, #ea01ff, #6a00ff);
+
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -24,51 +31,20 @@
 
         .contact-container {
             width: 100%;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 30px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: row;
-        }
-
-        .contact-image {
-            flex: 1;
-            background: linear-gradient(135deg, rgba(106, 0, 255, 0.8), rgba(255, 78, 205, 0.8)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><rect fill="%236a00ff" width="400" height="600"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            color: white;
-        }
-
-        .image-content {
-            text-align: center;
-        }
-
-        .image-content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-        .image-content p {
-            font-size: 16px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .contact-form {
-            flex: 1;
-            padding: 50px 40px;
-            background: white;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 28px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+            padding: 50px 45px;
             position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .contact-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 90px rgba(106, 0, 255, 0.25);
         }
 
         .home-btn {
@@ -76,7 +52,7 @@
             top: 20px;
             right: 20px;
             padding: 10px 20px;
-            background: linear-gradient(135deg, #ff4ecd, #6a00ff);
+            background: var(--grad);
             color: white;
             text-decoration: none;
             border-radius: 25px;
@@ -86,20 +62,23 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 8px 20px rgba(106, 0, 255, 0.3);
         }
 
         .home-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(106, 0, 255, 0.4);
+            box-shadow: 0 12px 30px rgba(106, 0, 255, 0.5);
         }
 
         .form-header {
-            margin-bottom: 35px;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .form-header h1 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #ff4ecd, #6a00ff);
+            font-size: 42px;
+            font-weight: 700;
+            background: var(--grad);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -107,8 +86,9 @@
         }
 
         .form-header p {
-            color: #666;
-            font-size: 14px;
+            font-size: 16px;
+            color: #3b2147;
+            opacity: 0.8;
         }
 
         .form-group {
@@ -117,72 +97,154 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 10px;
+            color: #3b2147;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label::before {
+            font-size: 18px;
+        }
+
+        .form-group.name label::before {
+            content: "👤";
+        }
+
+        .form-group.email label::before {
+            content: "📧";
+        }
+
+        .form-group.message label::before {
+            content: "💬";
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e0e0;
+            padding: 16px 18px;
+            border: 2px solid rgba(106, 0, 255, 0.2);
             border-radius: 12px;
             font-size: 15px;
             transition: all 0.3s ease;
-            background: #f9f9f9;
+            background: rgba(255, 255, 255, 0.8);
+            color: #3b2147;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(59, 33, 71, 0.5);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #6a00ff;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(106, 0, 255, 0.1);
-        }
-
-        .form-group input[readonly] {
-            background: #f0f0f0;
-            cursor: not-allowed;
-            color: #666;
+            border-color: var(--pink);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 4px rgba(255, 78, 205, 0.15);
+            transform: translateY(-2px);
         }
 
         .form-group textarea {
-            min-height: 140px;
+            min-height: 150px;
             resize: vertical;
             font-family: inherit;
         }
 
-        .required {
-            color: #ff4ecd;
-        }
-
         .submit-btn {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #ff4ecd, #6a00ff);
+            padding: 18px;
+            background: var(--grad);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 50px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(106, 0, 255, 0.3);
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(106, 0, 255, 0.4);
+        .submit-btn::before {
+            content: "📤";
+            font-size: 18px;
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 78, 205, 0.5);
         }
 
-        /* Alert Modal */
+        .submit-btn:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .other-ways {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .other-ways h3 {
+            font-size: 24px;
+            color: #3b2147;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .contact-method {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(106, 0, 255, 0.1);
+        }
+
+        .contact-method:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(106, 0, 255, 0.2);
+            border-color: var(--pink);
+        }
+
+        .contact-method .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .contact-method .label {
+            color: #3b2147;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .contact-method .info {
+            color: rgba(59, 33, 71, 0.7);
+            font-size: 13px;
+            word-break: break-all;
+        }
+
         .alert-overlay {
             display: none;
             position: fixed;
@@ -191,7 +253,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -203,53 +265,66 @@
         }
 
         .alert-box {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(18px);
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 28px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
             text-align: center;
             max-width: 400px;
             animation: slideUp 0.4s ease;
+            border: 2px solid rgba(106, 0, 255, 0.2);
         }
 
         .alert-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #ff4ecd, #6a00ff);
+            width: 80px;
+            height: 80px;
+            background: var(--grad);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 36px;
-            color: white;
+            margin: 0 auto 25px;
+            font-size: 40px;
+            box-shadow: 0 15px 35px rgba(106, 0, 255, 0.3);
+        }
+
+        .alert-icon.error {
+            background: linear-gradient(135deg, #ff4e4e, #ff0000);
         }
 
         .alert-box h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 28px;
+            color: #3b2147;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
         .alert-box p {
-            color: #666;
-            margin-bottom: 25px;
+            color: rgba(59, 33, 71, 0.8);
+            margin-bottom: 30px;
             line-height: 1.6;
+            font-size: 15px;
         }
 
         .alert-btn {
-            padding: 12px 40px;
-            background: linear-gradient(135deg, #ff4ecd, #6a00ff);
+            padding: 14px 45px;
+            background: var(--grad);
             color: white;
             border: none;
-            border-radius: 25px;
-            font-weight: 600;
+            border-radius: 50px;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s ease;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(106, 0, 255, 0.3);
         }
 
         .alert-btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 78, 205, 0.5);
         }
 
         @keyframes fadeIn {
@@ -274,26 +349,9 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .contact-container {
-                flex-direction: column;
-            }
-
-            .contact-image {
-                min-height: 250px;
-            }
-
-            .contact-form {
-                padding: 35px 25px;
-            }
-
-            .form-header h1 {
-                font-size: 26px;
-            }
-
-            .image-content h2 {
-                font-size: 28px;
+                padding: 40px 30px;
             }
 
             .home-btn {
@@ -302,74 +360,164 @@
                 padding: 8px 16px;
                 font-size: 13px;
             }
+
+            .form-header h1 {
+                font-size: 32px;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .alert-box {
+                margin: 0 20px;
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-container {
+                padding: 35px 25px;
+            }
+
+            .form-header h1 {
+                font-size: 28px;
+            }
+
+            .form-header p {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="contact-container">
-        <div class="contact-image">
-            <div class="image-content">
-                <h2>Get in Touch</h2>
-                <p>We'd love to hear from you! Send us your message and we'll respond as soon as possible.</p>
-            </div>
+        <a href="index.html" class="home-btn">
+            <span>🏠</span> Home
+        </a>
+
+        <div class="form-header">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you!</p>
         </div>
 
-        <div class="contact-form">
-            <a href="index.html" class="home-btn">
-                <span>🏠</span> Home
-            </a>
-
-            <div class="form-header">
-                <h1>Contact Us</h1>
-                <p>Fill out the form below to send us a message</p>
+        <form id="contactForm">
+            <div class="form-group name">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
             </div>
 
-            <form id="contactForm" method="POST" action="mailto:yr4444446@gmail.com" enctype="text/plain">
-                <div class="form-group">
-                    <label for="name">Your Name <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                </div>
+            <div class="form-group email">
+                <label for="userEmail">Email</label>
+                <input type="email" id="userEmail" name="email" required placeholder="Enter your email address">
+            </div>
 
-                <div class="form-group">
-                    <label for="email">To Email</label>
-                    <input type="email" id="email" name="email" value="yr4444446@gmail.com" readonly>
-                </div>
+            <div class="form-group message">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+            </div>
 
-                <div class="form-group">
-                    <label for="message">Your Message <span class="required">*</span></label>
-                    <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
-                </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
 
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+        <div class="other-ways">
+            <h3>Other Ways to Reach Us</h3>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="icon">📧</div>
+                    <div class="label">Email</div>
+                    <div class="info">yr4444446@gmail.com</div>
+                </div>
+                <div class="contact-method">
+                    <div class="icon">📞</div>
+                    <div class="label">Phone</div>
+                    <div class="info">+91-XXXXXXXXXX</div>
+                </div>
+                <div class="contact-method">
+                    <div class="icon">🕐</div>
+                    <div class="label">Hours</div>
+                    <div class="info">24/7 Support</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Alert Modal -->
     <div class="alert-overlay" id="alertOverlay">
         <div class="alert-box">
-            <div class="alert-icon">✓</div>
-            <h2>Opening Email Client...</h2>
-            <p>Your default email application will open with the message. Please send it from there to complete the
-                process.</p>
+            <div class="alert-icon" id="alertIcon">✓</div>
+            <h2 id="alertTitle">Message Sent!</h2>
+            <p id="alertMessage">Thank you for contacting us. We have received your message and will get back to you
+                soon.</p>
             <button class="alert-btn" onclick="closeAlert()">OK</button>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase-firestore.js"></script>
+
     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA-hgIWM8EfxB9NuogsGlkFXRjNB5L27Ls",
+            authDomain: "vsf2026-c79b5.firebaseapp.com",
+            databaseURL: "https://vsf2026-c79b5-default-rtdb.firebaseio.com",
+            projectId: "vsf2026-c79b5",
+            storageBucket: "vsf2026-c79b5.firebasestorage.app",
+            messagingSenderId: "103258149248",
+            appId: "1:103258149248:web:c1697be563fa91de447165"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const firestore = firebase.firestore();
+
         const contactForm = document.getElementById('contactForm');
         const alertOverlay = document.getElementById('alertOverlay');
+        const alertIcon = document.getElementById('alertIcon');
+        const alertTitle = document.getElementById('alertTitle');
+        const alertMessage = document.getElementById('alertMessage');
 
-        contactForm.addEventListener('submit', function (e) {
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-            if (name.trim() && message.trim()) {
-                // Show alert
-                setTimeout(() => {
-                    alertOverlay.classList.add('show');
-                }, 500);
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('userEmail').value,
+                message: document.getElementById('message').value,
+                submittedDate: new Date().toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }),
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                await firestore.collection('contacts').add(formData);
+
+                alertIcon.textContent = '✓';
+                alertIcon.classList.remove('error');
+                alertTitle.textContent = 'Message Sent!';
+                alertMessage.textContent = 'Thank you for contacting us. We have received your message and will get back to you soon.';
+                alertOverlay.classList.add('show');
+                contactForm.reset();
+            } catch (error) {
+                console.error('Error:', error);
+                alertIcon.textContent = '✕';
+                alertIcon.classList.add('error');
+                alertTitle.textContent = 'Oops!';
+                alertMessage.textContent = 'Something went wrong. Please try again or contact us directly at yr4444446@gmail.com';
+                alertOverlay.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '📤 Send Message';
             }
         });
 
@@ -377,7 +525,6 @@
             alertOverlay.classList.remove('show');
         }
 
-        // Close alert when clicking outside the box
         alertOverlay.addEventListener('click', function (e) {
             if (e.target === alertOverlay) {
                 closeAlert();
@@ -386,6 +533,4 @@
     </script>
 </body>
 
-
 </html>
-
