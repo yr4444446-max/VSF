@@ -354,7 +354,7 @@ h2 {
 .partner-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 30px;
+    gap: 16px;
 }
 
 .partner-card {
@@ -367,7 +367,8 @@ h2 {
     justify-content: center;
     align-items: center;
     transition: .4s;
-}
+    flex-wrap: wrap;
+        }
 
 .partner-card img {
     max-width: 120px;
@@ -1309,6 +1310,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
