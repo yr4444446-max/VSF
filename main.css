@@ -352,28 +352,23 @@ h2 {
 /* PARTNERS */
 /* PARTNERS */
 .partner-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
-    gap: 20px;
-    justify-content: center; /* ⬅ center cards */
-}
-
-/* SMALL CARD */
-.partner-card {
-    width: 200px;              /* ⬅ IMPORTANT */
-    height: 80px;              /* ⬅ IMPORTANT */
-    
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(12px);
-    border-radius: 14px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.12);
-
     display: flex;
-    align-items: center;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
     justify-content: center;
-
-    transition: .3s ease;
 }
+
+.partner-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.partner-card {
+    min-width: 200px;
+    height: 80px;
+    flex-shrink: 0; /* ⬅ VERY IMPORTANT */
+}
+
 
 .partner-card img {
     max-width: 90px;
@@ -1316,6 +1311,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
