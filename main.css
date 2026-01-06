@@ -360,7 +360,7 @@ h2 {
 
 /* SMALL CARD */
 .partner-card {
-    width: 150px;              /* ⬅ IMPORTANT */
+    width: 200px;              /* ⬅ IMPORTANT */
     height: 80px;              /* ⬅ IMPORTANT */
     
     background: rgba(255, 255, 255, 0.6);
@@ -1316,6 +1316,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
