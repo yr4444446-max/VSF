@@ -353,30 +353,36 @@ h2 {
 /* PARTNERS */
 .partner-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
+    gap: 20px;
+    justify-content: center; /* ⬅ center cards */
 }
 
+/* SMALL CARD */
 .partner-card {
-    background: rgba(255, 255, 255, .6);
-    backdrop-filter: blur(16px);
-    border-radius: 22px;
-    padding: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+    width: 150px;              /* ⬅ IMPORTANT */
+    height: 80px;              /* ⬅ IMPORTANT */
+    
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: .4s;
-    flex-wrap: wrap;
-        }
+    justify-content: center;
+
+    transition: .3s ease;
+}
 
 .partner-card img {
-    max-width: 120px;
-    max-height: 60px;
+    max-width: 90px;
+    max-height: 40px;
+    object-fit: contain;
     filter: grayscale(100%);
-    opacity: .8;
-    transition: .4s;
+    opacity: .75;
 }
+
 
 .partner-card:hover img {
     filter: grayscale(0%);
@@ -1310,6 +1316,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
