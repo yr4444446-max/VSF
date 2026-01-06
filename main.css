@@ -350,9 +350,10 @@ h2 {
 }
 
 /* PARTNERS */
+/* PARTNERS */
 .partner-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmin(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 30px;
 }
 
@@ -1308,6 +1309,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
 
 
 
