@@ -180,7 +180,6 @@
             transform: translateY(-2px);
         }
 
-      /* ===== TERMS MODAL ===== */
         #termsModal {
             position: fixed;
             inset: 0;
@@ -237,7 +236,7 @@
 </head>
 
 <body>
-    <a href="index.html">
+    <a href="main.html">
         <button class="home-btn">🏠 Home</button>
     </a>
 
@@ -391,6 +390,8 @@
 
     <!-- Firebase SDK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
 
     <script>
         // Firebase Configuration
@@ -407,6 +408,8 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+        const firestore = firebase.firestore();
+
 
         let activeCheckbox = null;
 
@@ -446,6 +449,11 @@
         function saveToFirebase(collection, data) {
             return database.ref(collection).push(data);
         }
+        // Save to Firestore
+        function saveToFirestore(collection, data) {
+            return firestore.collection(collection).add(data);
+        }
+
 
         // Form Handler with Firebase
         function handleFormWithFirebase(formId, collection, successMsg) {
@@ -481,16 +489,19 @@
                 data.submittedDate = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
                 // Save to Firebase
-                saveToFirebase(collection, data)
+                Promise.all([
+                    saveToFirebase(collection, data),
+                    saveToFirestore(collection, data)
+                ])
                     .then(() => {
-                        console.log("✅ Data saved successfully to Firebase");
+                        console.log("✅ Saved to Realtime DB and Firestore");
                         alert(successMsg);
                         form.reset();
                         goHome();
                     })
                     .catch((error) => {
-                        console.error("❌ Error saving to Firebase:", error);
-                        alert("Error: " + error.message + "\n\nPlease check:\n1. Internet connection\n2. Firebase database rules\n3. Browser console for details");
+                        console.error("❌ Error:", error);
+                        alert("Error: " + error.message);
                     })
                     .finally(() => {
                         submitBtn.textContent = originalText;
@@ -513,4 +524,3 @@
 </body>
 
 </html>
-
