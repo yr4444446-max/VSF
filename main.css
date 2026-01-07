@@ -1463,27 +1463,6 @@ button:hover {
         width: 180px;
     }
     
-    /* Extra small phones */
-@media (max-width: 480px) {
-    .nav-links {
-        width: 170px;
-    }
-    
-    .overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(rgba(106, 0, 255, 0.6),
-                rgba(255, 78, 205, 0.6));
-        z-index: 1;
-    }
-    
-    /* Glass box adjustment for small phones */
-    .bg-box {
-        width: 85%;
-        max-width: 340px;
-        min-height: 250px;
-        padding: 20px;
-    }
     
     .hero-content h1 {
         font-size: 22px;
@@ -1750,6 +1729,7 @@ button:hover {
         text-align: center;
         padding: 0 15px;
     }
+
 
 
 
