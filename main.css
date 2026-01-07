@@ -1702,5 +1702,51 @@ button:hover {
     }
 }
 
+    /* HERO SECTION MOBILE */
+    .hero {
+        height: 100vh;
+        min-height: 500px;
+        padding: 20px;
+        padding-top: 80px;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Hide desktop video, show mobile video */
+    .desktop-video {
+        display: none;
+    }
+    
+    .mobile-video {
+        display: block;
+    }
+    
+    /* Keep overlay visible on mobile */
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(106, 0, 255, 0.6),
+                rgba(255, 78, 205, 0.6));
+        z-index: 1;
+    }
+    
+    /* Show glass box on mobile */
+    .bg-box {
+        display: block;
+        width: 85%;
+        max-width: 340px;
+        height: auto;
+        min-height: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+        padding: 0 15px;
+    }
+
 
 
