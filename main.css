@@ -1438,29 +1438,36 @@ button:hover {
     .logo {
         font-size: 20px;
     }
+   
+    
+    .nav-links {
+        width: 180px;
+    }
+    
+    /* Extra small phones */
+@media (max-width: 480px) {
+    .nav-links {
+        width: 170px;
+    }
+    
     .overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(rgba(106, 0, 255, 0.6),
                 rgba(255, 78, 205, 0.6));
         z-index: 1;
-        /* Glass box adjustment for small phones */
+    }
+    
+    /* Glass box adjustment for small phones */
     .bg-box {
         width: 85%;
         max-width: 340px;
         min-height: 250px;
         padding: 20px;
-    
-    .nav-links {
-        width: 180px;
-    }
-    
-    .hero {
-        min-height: 450px;
     }
     
     .hero-content h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .hero-content h2 {
@@ -1468,7 +1475,7 @@ button:hover {
     }
     
     .hero-content p {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .btn {
@@ -1678,4 +1685,5 @@ button:hover {
         min-height: auto;
     }
 }
+
 
