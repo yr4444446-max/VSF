@@ -1363,16 +1363,19 @@ button:hover {
     .about-mla-section {
         padding: 60px 5%;
     }
+
+      
+    .about-mla-text,
+    .about-mla-image {
+        min-width: 100%;
+    }
     
     .about-mla-content {
         flex-direction: column;
         gap: 40px;
     }
     
-    .about-mla-text,
-    .about-mla-image {
-        min-width: 100%;
-    }
+
     
     .about-mla-text h1 {
         font-size: 28px;
@@ -1747,6 +1750,7 @@ button:hover {
         text-align: center;
         padding: 0 15px;
     }
+
 
 
 
