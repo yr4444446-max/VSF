@@ -35,11 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ===============================
-       DROPDOWN MENU - MOBILE OPTIMIZED
+       DROPDOWN MENU - MOBILE FIX (TUMHARA WALA CODE)
     =============================== */
     const dropdown = document.querySelector(".dropdown");
     const toggle = document.getElementById("dropdownToggle");
-
+    
     if (dropdown && toggle) {
         // Toggle dropdown on click
         toggle.addEventListener("click", e => {
@@ -47,25 +47,27 @@ document.addEventListener("DOMContentLoaded", () => {
             e.stopPropagation();
             dropdown.classList.toggle("active");
         });
-
+        
         // Close dropdown when clicking outside
         document.addEventListener("click", e => {
             if (!dropdown.contains(e.target)) {
                 dropdown.classList.remove("active");
             }
         });
-
+        
         // Prevent dropdown from closing when clicking inside
         dropdown.addEventListener("click", e => {
             e.stopPropagation();
         });
-
+        
         // Close dropdown when a link inside is clicked
         const dropdownLinks = dropdown.querySelectorAll(".dropdown-content a");
         dropdownLinks.forEach(link => {
             link.addEventListener("click", () => {
                 dropdown.classList.remove("active");
                 // Also close the mobile menu
+                const menuToggle = document.querySelector(".menu-toggle");
+                const navLinks = document.querySelector(".nav-links");
                 if (menuToggle && navLinks) {
                     menuToggle.classList.remove("active");
                     navLinks.classList.remove("active");
@@ -91,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     /* ===============================
        HEADER SCROLL EFFECT
     =============================== */
@@ -100,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!header) return;
         header.classList.toggle("scrolled", window.scrollY > 80);
     });
+
 
     /* ===============================
        COUNTER ANIMATION
@@ -133,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
+
     /* ===============================
        SLIDER AUTO ROTATION
     =============================== */
@@ -144,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const radio = document.getElementById("s" + currentSlide);
         if (radio) radio.checked = true;
     }, 4000);
+
 
     /* ===============================
        OPPORTUNITIES ROTATION
@@ -187,6 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showOpportunities();
     setInterval(showOpportunities, 10000);
 
+
     /* ===============================
        SUCCESS STORIES FADE-IN
     =============================== */
@@ -205,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         successCards.forEach(card => successObserver.observe(card));
     }
 
+
     /* ===============================
        BACK TO TOP BUTTON
     =============================== */
@@ -219,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
+
 
     /* ===============================
        COPY EMAIL + TOAST
@@ -246,47 +255,47 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2500);
     }
 
-    /* ===============================
-       CARD REVEAL ANIMATION
-    =============================== */
-    const cards = document.querySelectorAll('.card');
-
-    const cardObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-            }
-        });
-    });
-
-    cards.forEach(card => cardObserver.observe(card));
-
-    /* ===============================
-       SCROLL REVEAL ANIMATION
-    =============================== */
-    const reveals = document.querySelectorAll(".reveal");
-
-    function revealOnScroll() {
-        const windowHeight = window.innerHeight;
-        const revealPoint = 120;
-
-        reveals.forEach(el => {
-            const elementTop = el.getBoundingClientRect().top;
-
-            if (elementTop < windowHeight - revealPoint) {
-                el.classList.add("active");
-                el.classList.remove("fade-out");
-            } else {
-                el.classList.remove("active");
-                el.classList.add("fade-out");
-            }
-        });
-    }
-
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
-
 });
+
+/* ===============================
+   CARD REVEAL ANIMATION
+=============================== */
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+});
+
+cards.forEach(card => observer.observe(card));
+
+/* ===============================
+   SCROLL REVEAL ANIMATION
+=============================== */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 120;
+
+    reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - revealPoint) {
+            el.classList.add("active");
+            el.classList.remove("fade-out");
+        } else {
+            el.classList.remove("active");
+            el.classList.add("fade-out");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
 
 /* ===============================
    LEGACY MENU TOGGLE FUNCTION
