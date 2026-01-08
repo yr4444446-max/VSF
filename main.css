@@ -221,8 +221,8 @@ nav a:hover::after {
 .bg-box {
     position: absolute;
     width: 90%;
-    max-width: 500px;  /* Increased from 450px */
-    height: 280px;     /* Increased from 250px */
+    max-width: 470px;  /* Increased from 450px */
+    height: 240px;     /* Increased from 250px */
     left: 50px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.18);
@@ -1677,6 +1677,7 @@ button:hover {
         min-height: auto;
     }
 }
+
 
 
 
