@@ -217,6 +217,7 @@ nav a:hover::after {
 }
 
 /* Glass box */
+/* Glass box */
 .bg-box {
     position: absolute;
     width: 90%;
@@ -233,18 +234,17 @@ nav a:hover::after {
 
 /* Content layer */
 .hero-content {
-    max-width: 100%;
     position: relative;
-    max-width: 520px;
+    max-width: 100%;
     padding: 0 20px;
     z-index: 2;
     color: white;
+    max-width: 520px;
 }
 
 .hero-content h1 {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 12px;
-    text-align: left;
 }
 
 .hero-content h2 {
@@ -254,12 +254,12 @@ nav a:hover::after {
     -webkit-text-fill-color: #ffffff;
     color: #ffffff;
     text-align: left;
-    font-size: 20px;
+    font-size: 21px;
     margin-bottom: 10px;
 }
 
 .hero-content p {
-    font-size: 12px;
+    font-size: 14px;
     opacity: 1;
     text-align: left;
 }
@@ -1679,6 +1679,7 @@ button:hover {
         min-height: auto;
     }
 }
+
 
 
 
