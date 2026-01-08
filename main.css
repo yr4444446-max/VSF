@@ -1153,9 +1153,16 @@ button:hover {
         display: block;
     }
     
-    .bg-box {
-        display: none;
-    }
+   .bg-box {
+    display: block;
+    width: 85%;
+    max-width: 340px;
+    height: auto;
+    min-height: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+}
     
     .hero-content {
         max-width: 100%;
@@ -1670,3 +1677,4 @@ button:hover {
         min-height: auto;
     }
 }
+
