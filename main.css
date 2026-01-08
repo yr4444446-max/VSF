@@ -221,8 +221,8 @@ nav a:hover::after {
 .bg-box {
     position: absolute;
     width: 90%;
-    max-width: 450px;
-    height: 250px;
+    max-width: 500px;  /* Increased from 450px */
+    height: 280px;     /* Increased from 250px */
     left: 50px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.18);
@@ -243,25 +243,17 @@ nav a:hover::after {
 }
 
 .hero-content h1 {
-    font-size: 24px;
+    font-size: 22px;  /* Reduced from 24px */
     margin-bottom: 12px;
 }
 
 .hero-content h2 {
-    background: none;
-    -webkit-background-clip: initial;
-    background-clip: initial;
-    -webkit-text-fill-color: #ffffff;
-    color: #ffffff;
-    text-align: left;
-    font-size: 21px;
+    font-size: 19px;  /* Reduced from 21px */
     margin-bottom: 10px;
 }
 
 .hero-content p {
-    font-size: 14px;
-    opacity: 1;
-    text-align: left;
+    font-size: 13px;  /* Reduced from 14px */
 }
 
 .btn {
@@ -1679,6 +1671,7 @@ button:hover {
         min-height: auto;
     }
 }
+
 
 
 
