@@ -241,8 +241,8 @@ nav a:hover::after {
 }
 
 .hero-content h1 {
-    font-size: 21px;
-    margin-bottom: 1px;
+    font-size: 24px;
+    margin-bottom: 12px;
 }
 
 .hero-content h2 {
@@ -252,12 +252,12 @@ nav a:hover::after {
     -webkit-text-fill-color: #ffffff;
     color: #ffffff;
     text-align: left;
-    font-size: 22px;
-    margin-bottom: 13px;
+    font-size: 21px;
+    margin-bottom: 10px;
 }
 
 .hero-content p {
-    font-size: 13px;
+    font-size: 14px;
     opacity: 1;
     text-align: left;
 }
@@ -1677,6 +1677,7 @@ button:hover {
         min-height: auto;
     }
 }
+
 
 
 
