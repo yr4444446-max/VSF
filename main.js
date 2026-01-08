@@ -15,8 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
         });
 
-        // Close menu when clicking on a link
+        // Close menu when clicking on a link (but NOT dropdown toggle)
         navItems.forEach(item => {
+            // Skip the dropdown toggle link
+            if (item.id === "dropdownToggle") return;
+            
             item.addEventListener("click", () => {
                 menuToggle.classList.remove("active");
                 navLinks.classList.remove("active");
@@ -35,39 +38,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ===============================
-       DROPDOWN MENU - MOBILE FIX (TUMHARA WALA CODE)
+       DROPDOWN MENU - MOBILE OPTIMIZED
     =============================== */
     const dropdown = document.querySelector(".dropdown");
-    const toggle = document.getElementById("dropdownToggle");
+    const dropdownToggle = document.getElementById("dropdownToggle");
     
-    if (dropdown && toggle) {
+    if (dropdown && dropdownToggle) {
         // Toggle dropdown on click
-        toggle.addEventListener("click", e => {
+        dropdownToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
             dropdown.classList.toggle("active");
         });
         
         // Close dropdown when clicking outside
-        document.addEventListener("click", e => {
+        document.addEventListener("click", (e) => {
             if (!dropdown.contains(e.target)) {
                 dropdown.classList.remove("active");
             }
         });
         
-        // Prevent dropdown from closing when clicking inside
-        dropdown.addEventListener("click", e => {
-            e.stopPropagation();
-        });
+        // Prevent dropdown from closing when clicking inside dropdown content area
+        const dropdownContent = dropdown.querySelector(".dropdown-content");
+        if (dropdownContent) {
+            dropdownContent.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+        }
         
-        // Close dropdown when a link inside is clicked
+        // Close dropdown AND mobile menu when a dropdown link is clicked
         const dropdownLinks = dropdown.querySelectorAll(".dropdown-content a");
         dropdownLinks.forEach(link => {
             link.addEventListener("click", () => {
+                // Close dropdown
                 dropdown.classList.remove("active");
-                // Also close the mobile menu
-                const menuToggle = document.querySelector(".menu-toggle");
-                const navLinks = document.querySelector(".nav-links");
+                
+                // Close mobile menu
                 if (menuToggle && navLinks) {
                     menuToggle.classList.remove("active");
                     navLinks.classList.remove("active");
@@ -93,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     /* ===============================
        HEADER SCROLL EFFECT
     =============================== */
@@ -103,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!header) return;
         header.classList.toggle("scrolled", window.scrollY > 80);
     });
-
 
     /* ===============================
        COUNTER ANIMATION
@@ -137,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
-
     /* ===============================
        SLIDER AUTO ROTATION
     =============================== */
@@ -149,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const radio = document.getElementById("s" + currentSlide);
         if (radio) radio.checked = true;
     }, 4000);
-
 
     /* ===============================
        OPPORTUNITIES ROTATION
@@ -193,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showOpportunities();
     setInterval(showOpportunities, 10000);
 
-
     /* ===============================
        SUCCESS STORIES FADE-IN
     =============================== */
@@ -212,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
         successCards.forEach(card => successObserver.observe(card));
     }
 
-
     /* ===============================
        BACK TO TOP BUTTON
     =============================== */
@@ -227,7 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-
 
     /* ===============================
        COPY EMAIL + TOAST
@@ -304,11 +303,8 @@ function toggleMenu() {
     const menu = document.getElementById("nav-links");
     const btn = document.getElementById("menuBtn");
 
-    menu.classList.toggle("show");
-
-    if (menu.classList.contains("show")) {
-        btn.innerHTML = "❌";
-    } else {
-        btn.innerHTML = "☰";
+    if (menu && btn) {
+        menu.classList.toggle("show");
+        btn.innerHTML = menu.classList.contains("show") ? "❌" : "☰";
     }
 }
