@@ -248,7 +248,13 @@ nav a:hover::after {
 }
 
 .hero-content h2 {
-    font-size: 19px;  /* Reduced from 21px */
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+    text-align: left;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
@@ -1671,6 +1677,7 @@ button:hover {
         min-height: auto;
     }
 }
+
 
 
 
