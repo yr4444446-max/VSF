@@ -1126,20 +1126,12 @@ button:hover {
         color: #fff;
     }
     
-     .overlay {
+    .overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(rgba(106, 0, 255, 0.6),
                 rgba(255, 78, 205, 0.6));
         z-index: 1;
-    }
-    
-    /* Glass box adjustment for small phones */
-    .bg-box {
-        width: 85%;
-        max-width: 340px;
-        min-height: 250px;
-        padding: 20px;
     }
     
     /* HERO SECTION MOBILE */
@@ -1363,8 +1355,7 @@ button:hover {
     .about-mla-section {
         padding: 60px 5%;
     }
-
-      
+    
     .about-mla-text,
     .about-mla-image {
         min-width: 100%;
@@ -1374,8 +1365,6 @@ button:hover {
         flex-direction: column;
         gap: 40px;
     }
-    
-
     
     .about-mla-text h1 {
         font-size: 28px;
@@ -1457,12 +1446,10 @@ button:hover {
     .logo {
         font-size: 20px;
     }
-   
     
     .nav-links {
         width: 180px;
     }
-    
     
     .hero-content h1 {
         font-size: 22px;
@@ -1683,54 +1670,3 @@ button:hover {
         min-height: auto;
     }
 }
-
-    /* HERO SECTION MOBILE */
-    .hero {
-        height: 100vh;
-        min-height: 500px;
-        padding: 20px;
-        padding-top: 80px;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    /* Hide desktop video, show mobile video */
-    .desktop-video {
-        display: none;
-    }
-    
-    .mobile-video {
-        display: block;
-    }
-    
-    /* Keep overlay visible on mobile */
-    .overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(rgba(106, 0, 255, 0.6),
-                rgba(255, 78, 205, 0.6));
-        z-index: 1;
-    }
-    
-    /* Show glass box on mobile */
-    .bg-box {
-        display: block;
-        width: 85%;
-        max-width: 340px;
-        height: auto;
-        min-height: 250px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 20px;
-    }
-    
-    .hero-content {
-        max-width: 100%;
-        text-align: center;
-        padding: 0 15px;
-    }
-
-
-
-
-
