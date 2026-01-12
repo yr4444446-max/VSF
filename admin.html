@@ -648,6 +648,15 @@
                     snapshot.forEach(doc => {
                         allData[collection].push({ id: doc.id, ...doc.data() });
                     });
+                    
+                    // DEBUG: Show first item's date format
+                    if (allData[collection].length > 0) {
+                        const firstItem = allData[collection][0];
+                        console.log(`${collection} - First item:`, firstItem);
+                        console.log(`${collection} - Date field:`, firstItem.submittedDate);
+                        console.log(`${collection} - Date type:`, typeof firstItem.submittedDate);
+                        console.log(`${collection} - Date object:`, firstItem.submittedDate?.toDate ? 'Firebase Timestamp' : 'String/Other');
+                    }
                 }
 
                 document.getElementById('loadingMessage').style.display = 'none';
@@ -692,12 +701,54 @@
             const now = new Date();
             const durations = { 'today': 1, 'week': 7, 'month': 30, '3months': 90, 'year': 365 };
             const daysToSubtract = durations[duration];
-            const cutoffDate = new Date(now.setDate(now.getDate() - daysToSubtract));
+            
+            // Create cutoff date properly without modifying 'now'
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - daysToSubtract);
+            cutoffDate.setHours(0, 0, 0, 0); // Start of day
+
+            console.log('Filter duration:', duration, '| Cutoff date:', cutoffDate);
 
             return data.filter(item => {
-                if (!item.submittedDate) return false;
-                const itemDate = new Date(item.submittedDate);
-                return itemDate >= cutoffDate;
+                // Priority: timestamp (ISO format) > submittedDate > other date fields
+                const dateField = item.timestamp || 
+                                  item.submittedDate || 
+                                  item.date || 
+                                  item.createdDate ||
+                                  item.joinedDate ||
+                                  item.registeredDate;
+                
+                if (!dateField) {
+                    console.log('No date field found for item:', item.id);
+                    return false;
+                }
+                
+                // Parse the date - handles both ISO strings and MM/DD/YYYY format
+                let itemDate;
+                
+                if (typeof dateField === 'string') {
+                    // Try parsing as-is (works for ISO format and most date strings)
+                    itemDate = new Date(dateField);
+                    
+                    // If invalid, try parsing MM/DD/YYYY, HH:MM:SS format
+                    if (isNaN(itemDate.getTime())) {
+                        // Extract just the date part if there's a time
+                        const datePart = dateField.split(',')[0];
+                        itemDate = new Date(datePart);
+                    }
+                } else {
+                    itemDate = new Date(dateField);
+                }
+                
+                // Validate that the date is valid
+                if (isNaN(itemDate.getTime())) {
+                    console.log('Invalid date:', dateField, 'for item:', item.id);
+                    return false;
+                }
+                
+                const isIncluded = itemDate >= cutoffDate;
+                
+                return isIncluded;
             });
         }
 
@@ -712,6 +763,13 @@
                     JSON.stringify(item).toLowerCase().includes(searchTerm)
                 );
             }
+
+            // Sort by date (newest first)
+            filteredData.sort((a, b) => {
+                const dateA = new Date(a.submittedDate || a.timestamp || a.date || a.createdDate || 0);
+                const dateB = new Date(b.submittedDate || b.timestamp || b.date || b.createdDate || 0);
+                return dateB - dateA; // Descending order (newest first)
+            });
 
             switch (currentTab) {
                 case 'startups': renderStartups(filteredData); break;
